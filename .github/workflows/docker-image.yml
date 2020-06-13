@@ -18,3 +18,4 @@ jobs:
     - name: Autenticando no GitHub Packages
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u renatogroffe --password-stdin
+        echo $GITHUB_REPOSITORY
