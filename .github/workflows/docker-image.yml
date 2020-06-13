@@ -18,12 +18,9 @@ jobs:
     steps:
     
     - run: |
-        nome="Renato Jose"
-        nome="${nome,,}"
-        sobrenome="Groffe"
-        sobrenome="${sobrenome,,}"
-        string = "${nome} ${sobrenome}"
-        echo $string
+        nome=$GITHUB_REPOSITORY
+        nome=${nome,,}
+        echo $nome
       
     - uses: actions/checkout@v2
       
@@ -34,6 +31,7 @@ jobs:
       
     - name: Build e Push das imagens Docker no GitHub Packages
       run: |
+        
         docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
         docker tag $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:latest
         docker push $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}
