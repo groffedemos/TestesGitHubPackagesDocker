@@ -16,6 +16,14 @@ jobs:
       PATH_GITHUB_PACKAGES: docker.pkg.github.com
 
     steps:
+    
+    - run: |
+        nome="Renato Jose"
+        nome="${nome,,}"
+        sobrenome="Groffe"
+        sobrenome="${sobrenome,,}"
+        string = "${nome} ${sobrenome}"
+        echo $string
       
     - uses: actions/checkout@v2
       
@@ -23,12 +31,6 @@ jobs:
       run: |
         echo "GitHub Packages = $PATH_GITHUB_PACKAGES"
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
-    
-    - run: |
-        nome="Renato Jose"
-        sobrenome="Groffe"
-        string = "${nome,,} ${sobrenome,,}"
-        echo $string
       
     - name: Build e Push das imagens Docker no GitHub Packages
       run: |
