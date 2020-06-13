@@ -11,11 +11,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      PATH_GITHUB_PACKAGES: docker.pkg.github.com 
 
     steps:
-    - env:
-        PATH_GITHUB_PACKAGES: docker.pkg.github.com
-      run: echo "$PATH_GITHUB_PACKAGES"
+    - run: echo "$PATH_GITHUB_PACKAGES"
       
     - uses: actions/checkout@v2
     
