@@ -18,7 +18,8 @@ jobs:
     steps:
     
     - run: |
-        nome=${$GITHUB_REPOSITORY,,}
+        nome=$GITHUB_REPOSITORY
+        nome=${nome,,}
         echo $nome
       
     - uses: actions/checkout@v2
