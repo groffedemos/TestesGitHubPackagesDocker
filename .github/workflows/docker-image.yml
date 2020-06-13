@@ -29,4 +29,5 @@ jobs:
         owner_Repository=$GITHUB_REPOSITORY
         owner_Repository=${owner_Repository,,}        
         docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:$GITHUB_RUN_NUMBER
+        docker tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:$GITHUB_RUN_NUMBER $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:latest
         docker push $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM
