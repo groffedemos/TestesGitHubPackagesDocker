@@ -11,18 +11,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+
     env:
       PATH_GITHUB_PACKAGES: docker.pkg.github.com 
 
     steps:
-    - run: echo "$PATH_GITHUB_PACKAGES"
       
     - uses: actions/checkout@v2
     
-
-    - run: echo $PATH_GITHUB_PACKAGES
+    - run: echo "PATH_GITHUB_PACKAGES = $PATH_GITHUB_PACKAGES"
       
     - name: Autenticando no GitHub Packages
       run: |
-        echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u renatogroffe --password-stdin
-        echo $GITHUB_REPOSITORY
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
+        docker images
