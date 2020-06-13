@@ -27,7 +27,7 @@ jobs:
     - run: |
         string="Renato Jose Groffe"
         string=${string,,}
-        echo string
+        echo $string
       
     - name: Build e Push das imagens Docker no GitHub Packages
       run: |
