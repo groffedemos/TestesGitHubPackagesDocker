@@ -21,7 +21,7 @@ jobs:
       
     - name: Autenticando no GitHub Packages
       env:
-        NOME_COMPLETO_IMAGEM: "$PATH_GITHUB_PACKAGES/renatogroffe"
+        NOME_COMPLETO_IMAGEM: $PATH_GITHUB_PACKAGES"/renatogroffe"
       run: |
         echo "PATH_GITHUB_PACKAGES = $PATH_GITHUB_PACKAGES"
         echo $NOME_COMPLETO_IMAGEM
