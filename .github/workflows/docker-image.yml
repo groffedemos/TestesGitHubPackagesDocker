@@ -25,7 +25,7 @@ jobs:
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
     
     - run: |
-        string=Renato Jose Groffe
+        string="Renato Jose Groffe"
         string=${string,,}
         echo string
       
