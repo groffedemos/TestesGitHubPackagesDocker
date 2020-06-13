@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
     
 
-    - run: echo $PATH_GITHUB_PACKAGES
+    - run: echo $"PATH_GITHUB_PACKAGES"
       
     - name: Autenticando no GitHub Packages
       run: |
