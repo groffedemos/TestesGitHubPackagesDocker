@@ -18,10 +18,11 @@ jobs:
     steps:
       
     - uses: actions/checkout@v2
-    
-    - run: echo "PATH_GITHUB_PACKAGES = $PATH_GITHUB_PACKAGES"
       
     - name: Autenticando no GitHub Packages
+      env:
+        NOME_COMPLETO_IMAGEM: "$PATH_GITHUB_PACKAGES/renatogroffe"
       run: |
+        echo "PATH_GITHUB_PACKAGES = $PATH_GITHUB_PACKAGES"
+        echo $NOME_COMPLETO_IMAGEM
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
-        docker images
