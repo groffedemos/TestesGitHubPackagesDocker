@@ -13,16 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PATH_GITHUB_PACKAGES: docker.pkg.github.com 
+      PATH_GITHUB_PACKAGES: docker.pkg.github.com
 
     steps:
       
     - uses: actions/checkout@v2
       
     - name: Autenticando no GitHub Packages
-      env:
-        NOME_COMPLETO_IMAGEM: $PATH_GITHUB_PACKAGES"/renatogroffe"
       run: |
-        echo "PATH_GITHUB_PACKAGES = $PATH_GITHUB_PACKAGES"
-        echo $NOME_COMPLETO_IMAGEM
+        echo "GitHub Packages = $PATH_GITHUB_PACKAGES"
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
+        
+    - name: Build e Push das imagens Docker no GitHub Packages
+      run: |
+        docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
+        docker tag $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:latest
+        docker push $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}
