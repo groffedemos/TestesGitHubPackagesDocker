@@ -14,7 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - env:
+        PATH_GITHUB_PACKAGES: docker.pkg.github.com
 
+    - run: echo $PATH_GITHUB_PACKAGES
+      
     - name: Autenticando no GitHub Packages
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u renatogroffe --password-stdin
