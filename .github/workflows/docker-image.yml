@@ -28,6 +28,6 @@ jobs:
       run: |
         owner_Repository=$GITHUB_REPOSITORY
         owner_Repository=${owner_Repository,,}        
-        docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:latest
+        docker build --no-cache . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:latest
         docker tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:latest $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:$GITHUB_RUN_NUMBER
         docker push $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM
