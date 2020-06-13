@@ -23,7 +23,9 @@ jobs:
       run: |
         echo "GitHub Packages = $PATH_GITHUB_PACKAGES"
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
-        
+    
+    - run: echo {$GITHUB_REPOSITORY,,}
+      
     - name: Build e Push das imagens Docker no GitHub Packages
       run: |
         docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$GITHUB_REPOSITORY/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
