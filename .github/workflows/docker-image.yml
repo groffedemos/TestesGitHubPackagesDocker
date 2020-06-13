@@ -34,4 +34,4 @@ jobs:
         ownerRepository=$GITHUB_REPOSITORY
         ownerRepository=${ownerRepository,,}        
         docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$ownerRepository/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
-        docker images
+        docker push $PATH_GITHUB_PACKAGES/$ownerRepository/${{ secrets.NOME_IMAGEM }}
