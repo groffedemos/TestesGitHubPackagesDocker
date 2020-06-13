@@ -15,7 +15,7 @@ jobs:
     steps:
     - env:
         PATH_GITHUB_PACKAGES: docker.pkg.github.com
-      run: echo $PATH_GITHUB_PACKAGES
+      run: echo "$PATH_GITHUB_PACKAGES"
       
     - uses: actions/checkout@v2
     
