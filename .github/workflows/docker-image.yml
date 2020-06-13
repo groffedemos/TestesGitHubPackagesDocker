@@ -25,8 +25,9 @@ jobs:
         echo ${{ secrets.GITHUB_TOKEN }} | docker login $PATH_GITHUB_PACKAGES -u renatogroffe --password-stdin
     
     - run: |
-        string = "Renato Jose Groffe"
-        string = ${string,,}
+        nome="Renato Jose "
+        sobrenome="Groffe"
+        string = ${nome,,}${sobrenome,,}
         echo $string
       
     - name: Build e Push das imagens Docker no GitHub Packages
