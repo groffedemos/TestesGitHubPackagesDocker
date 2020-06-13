@@ -14,14 +14,9 @@ jobs:
 
     env:
       PATH_GITHUB_PACKAGES: docker.pkg.github.com
+      NOME_IMAGEM: site-live
 
     steps:
-    
-    - run: |
-        nome=$GITHUB_REPOSITORY
-        nome=${nome,,}
-        echo $nome
-      
     - uses: actions/checkout@v2
       
     - name: Autenticando no GitHub Packages
@@ -31,7 +26,7 @@ jobs:
       
     - name: Build e Push das imagens Docker no GitHub Packages
       run: |
-        ownerRepository=$GITHUB_REPOSITORY
-        ownerRepository=${ownerRepository,,}        
-        docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$ownerRepository/${{ secrets.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
-        docker push $PATH_GITHUB_PACKAGES/$ownerRepository/${{ secrets.NOME_IMAGEM }}
+        owner_Repository=$GITHUB_REPOSITORY
+        owner_Repository=${owner_Repository,,}        
+        docker build . --file Dockerfile --tag $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM:$GITHUB_RUN_NUMBER
+        docker push $PATH_GITHUB_PACKAGES/$owner_Repository/$NOME_IMAGEM
